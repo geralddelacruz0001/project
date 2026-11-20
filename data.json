@@ -1,0 +1,49 @@
+{
+  "profile": {
+    "name": "Gerald Dela Cruz",
+    "role": "Frontend Developer & UI Designer",
+    "about": "Hello! Ako si Gerald. Isang web developer na mahilig gumawa ng kakaibang mobile UI gamit ang HTML, CSS, at JavaScript."
+  },
+  "contact": {
+    "email": "delacruzgerald042017@gmail.com",
+    "phone": "+63 912 345 6789",
+    "location": "Pampanga, Philippines"
+  },
+  "skills": [
+    { "name": "HTML5", "level": 95 },
+    { "name": "CSS3 / Animations", "level": 90 },
+    { "name": "JavaScript", "level": 85 },
+    { "name": "Termux / CLI", "level": 80 },
+    { "name": "UI / UX Design", "level": 75 },
+    { "name": "React Native", "level": 75 },
+    { "name": "Python", "level": 75 },
+    { "name": "PHP", "level": 75 },
+    { "name": "C++", "level": 75 },
+    { "name": "C#", "level": 75 }
+  ],
+  "projects": [
+    {
+      "title": "Mobile Portfolio",
+      "desc": "Isang portfolio na parang totoong cellphone. May lock screen, apps, at music player.",
+      "img": "images/python1.png"
+    },
+    {
+      "title": "E-Commerce UI",
+      "desc": "Isang modernong tindahan sa web na may dark mode at glassmorphism effects.",
+      "img": "images/python1.png"
+    },
+    {
+      "title": "Developer Dashboard",
+      "desc": "Isang modernong dashboard interface na may interactive cards at responsive layout.",
+      "img": "images/python1.png"
+    }
+  ],
+  "gallery": [
+    "images/html1.png",
+    "images/css1.png",
+    "images/javascript1.png",
+    "images/python1.png",
+    "images/csharp1.png",
+    "images/myprofile.jpg"
+  ]
+}

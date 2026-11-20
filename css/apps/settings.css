@@ -1,0 +1,9 @@
+/* ===== SETTINGS MODAL ===== */
+.settings-modal { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.8); display: none; align-items: center; justify-content: center; z-index: 200; }
+.settings-modal.show { display: flex; }
+.settings-content { background: var(--card); padding: 20px; border-radius: 16px; width: 80%; color: var(--text); text-align: center; }
+.settings-content h3 { margin-bottom: 16px; font-size: 16px; }
+.wallpaper-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.wp-btn { padding: 10px; border: none; border-radius: 8px; background: var(--icon-bg); color: var(--text); cursor: pointer; font-size: 13px; }
+.wp-btn:active { transform: scale(0.95); }
+.close-settings { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }

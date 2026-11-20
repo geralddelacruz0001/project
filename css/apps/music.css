@@ -1,0 +1,19 @@
+/* ===== MUSIC WIDGET ===== */
+.music-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.m-top { display: flex; justify-content: space-between; align-items: center; }
+.m-left { display: flex; align-items: center; gap: 12px; }
+.m-icon { width: 44px; height: 44px; background: var(--icon-bg); border-radius: 12px; display: grid; place-items: center; font-size: 22px; }
+.m-info { display: flex; flex-direction: column; }
+.m-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.m-artist { font-size: 11px; color: var(--text-dim); }
+.m-controls { display: flex; align-items: center; gap: 8px; }
+.m-btn { background: var(--accent); color: #fff; border: none; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 16px; display: grid; place-items: center; }
+.m-btn-small { background: none; color: var(--text); border: none; cursor: pointer; font-size: 16px; }
+.m-bottom { display: flex; align-items: center; gap: 10px; }
+.m-time { font-size: 10px; color: var(--text-dim); min-width: 25px; text-align: center; }
+.m-progress { flex: 1; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden; cursor: pointer; position: relative; }
+.m-bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.1s linear; }

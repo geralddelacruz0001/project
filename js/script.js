@@ -64,35 +64,11 @@ async function showScreen(id) {
   const target = document.getElementById(id);
   if (!target) return;
   target.classList.add("active");
+  
+  target.style.background = "transparent";
 
-  // Isara ang weather modal kung sakaling bukas
   const weatherModal = document.getElementById("weatherModal");
   if (weatherModal) weatherModal.classList.remove("show");
-
-  // I-load ang Music at Settings kung hindi pa
-  if (!loadedApps["music"]) {
-    const musicCss = document.createElement("link");
-    musicCss.rel = "stylesheet";
-    musicCss.href = `css/apps/music.css`;
-    document.head.appendChild(musicCss);
-
-    const musicJs = document.createElement("script");
-    musicJs.src = `js/apps/music.js`;
-    document.body.appendChild(musicJs);
-    loadedApps["music"] = true;
-  }
-
-  if (!loadedApps["settings"]) {
-    const settingsCss = document.createElement("link");
-    settingsCss.rel = "stylesheet";
-    settingsCss.href = `css/apps/settings.css`;
-    document.head.appendChild(settingsCss);
-
-    const settingsJs = document.createElement("script");
-    settingsJs.src = `js/apps/settings.js`;
-    document.body.appendChild(settingsJs);
-    loadedApps["settings"] = true;
-  }
 
   if (id === "facebookApp") {
     loadedApps[id] = true;
@@ -114,19 +90,16 @@ async function showScreen(id) {
           appCss.href = `css/apps/${appName}.css`;
           document.head.appendChild(appCss);
 
-          const appJs = document.createElement("script");
-          appJs.src = `js/apps/${appName}.js`;
-          document.body.appendChild(appJs);
+          if (!loadedApps[appName + "-script"]) {
+            const appJs = document.createElement("script");
+            appJs.src = `js/apps/${appName}.js`;
+            document.body.appendChild(appJs);
+            loadedApps[appName + "-script"] = true;
+          }
         }
 
       } else {
-        target.innerHTML = `
-          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; color:var(--text-dim);">
-            <div style="font-size:64px; margin-bottom:16px;">🚫</div>
-            <h3 style="color:var(--text); margin-bottom:8px;">App Not Found</h3>
-            <p style="font-size:13px;">Hindi ma-load ang "${id}.html".<br>Siguraduhing nasa tamang folder ito.</p>
-          </div>
-        `;
+        target.innerHTML = '<p style="text-align:center; margin-top:20px;">Error loading app.</p>';
       }
     } catch (error) {
       target.innerHTML = '<p style="text-align:center; margin-top:20px;">Offline or error.</p>';
@@ -149,7 +122,6 @@ window.goHome = function() {
   if(lockScreen) lockScreen.classList.remove("active");
   if(homeScreen) homeScreen.classList.add("active");
   
-  // Isara ang weather modal kapag bumabalik sa home
   const weatherModal = document.getElementById("weatherModal");
   if (weatherModal) weatherModal.classList.remove("show");
   
@@ -177,7 +149,7 @@ window.openProject = function(imgSrc, title, desc) {
   buzz(10);
 };
 
-document.querySelectorAll(".app-icon[data-target]").forEach((btn) => {
+document.querySelectorAll("[data-target]").forEach((btn) => {
   btn.addEventListener("click", () => showScreen(btn.dataset.target));
 });
 
@@ -193,7 +165,6 @@ if (weatherWidget) {
     const weatherModal = document.getElementById("weatherModal");
     if (!weatherModal) return;
 
-    // 1. Kunin ang HTML mula sa weather.html
     if (!loadedApps["weather-html"]) {
       weatherModal.innerHTML = '<div class="loading-spinner"></div>';
       try {
@@ -211,8 +182,7 @@ if (weatherWidget) {
       }
     }
 
-    // 2. I-load ang JS at CSS kung hindi pa
-    if (!loadedApps["weather"]) {
+    if (!loadedApps["weather-script"]) {
       const appCss = document.createElement("link");
       appCss.rel = "stylesheet";
       appCss.href = `css/apps/weather.css`;
@@ -221,13 +191,21 @@ if (weatherWidget) {
       const appJs = document.createElement("script");
       appJs.src = `js/apps/weather.js`;
       document.body.appendChild(appJs);
-      loadedApps["weather"] = true;
+      loadedApps["weather-script"] = true;
     }
 
-    // 3. Ipakita ang modal
     weatherModal.classList.add("show");
     playTone(600, 0.05);
     buzz(10);
+  });
+}
+
+/* ===== MUSIC WIDGET CLICK ===== */
+const musicWidget = document.getElementById("musicWidget");
+if (musicWidget) {
+  musicWidget.addEventListener("click", (e) => {
+    if (e.target.id === "miniPlayBtn") return; 
+    showScreen("music");
   });
 }
 
@@ -335,7 +313,7 @@ if(homeBtn) {
 function openSwitcher() {
   if(!switcherCards || !appSwitcher) return;
   switcherCards.innerHTML = "";
-  const appIcons = { about: "👤", projects: "💼", skills: "⚙️", gallery: "🖼️", contact: "✉️", calc: "🧮", notes: "📝", facebookApp: "📘", game: "🎮", dashboard: "📊" };
+  const appIcons = { about: "👤", projects: "💼", skills: "⚙️", gallery: "🖼️", contact: "✉️", calc: "🧮", notes: "📝", facebookApp: "📘", game: "🎮", dashboard: "📊", music: "🎵", settings: "⚙️" };
   const list = recentApps.length ? recentApps : Object.keys(appIcons).slice(0, 3);
   list.forEach((id) => {
     const card = document.createElement("div");
@@ -403,11 +381,3 @@ setTimeout(() => {
     if (batteryAlert) batteryAlert.textContent = "Battery level is good.";
   }
 }, 5000);
-/* ===== SERVICE WORKER (PWA) ===== */
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js")
-      .then(() => console.log("✅ Service Worker registered"))
-      .catch((e) => console.warn("SW error:", e));
-  });
-}

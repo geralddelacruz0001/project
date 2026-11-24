@@ -48,7 +48,7 @@
       <div class="notification-panel" id="notifPanel">
         <div class="notif-header">Notifications</div>
         <div class="notif-item"><strong>📩 Welcome!</strong><p>Thanks for visiting my portfolio.</p></div>
-        <div class="notif-item"><strong id="notifMusicText">🎵 Now Playing</strong><p>SoundHelix Song 1</p></div>
+        <div class="notif-item"><strong id="notifMusicText">🎵 Now Playing</strong><p id="notifMusicDesc">Empire State of Mind</p></div>
         <div class="notif-item"><strong>🔋 Battery Alert</strong><p id="batteryAlertText">Your battery is doing great.</p></div>
       </div>
 
@@ -61,10 +61,14 @@
 
       <!-- HOME SCREEN -->
       <section class="app-screen" id="home">
-        <div class="home-header">
+       <div class="home-header">
+ 	 <h1 class="home-title">My Portfolio</h1>
+ 	 <button class="settings-btn" data-target="settings">⚙️</button>
+	</div>
+	 <!--<div class="home-header">
           <h1 class="home-title">My Portfolio</h1>
           <button class="settings-btn" id="openSettings">⚙️</button>
-        </div>
+        </div> -->
 
         <div class="search-bar-container">
           <input type="text" id="appSearch" placeholder="Search apps..." />
@@ -76,28 +80,20 @@
           <div class="w-right"><span class="w-icon" id="wIcon">⛅</span><span class="w-desc" id="wDesc">Loading...</span></div>
         </div>
 
-        <!-- MUSIC WIDGET -->
-        <div class="widget music-widget">
+        <!-- MUSIC WIDGET (Mini - Clickable) -->
+        <div class="widget music-widget" id="musicWidget" style="cursor: pointer;">
           <div class="m-top">
             <div class="m-left">
               <span class="m-icon">🎵</span>
               <div class="m-info">
-                <span class="m-title">SoundHelix</span>
-                <span class="m-artist">Song 1</span>
+                <span class="m-title">Now Playing</span>
+                <span class="m-artist">Open Music App</span>
               </div>
             </div>
             <div class="m-controls">
-              <button id="prevBtn" class="m-btn-small">⏮</button>
-              <button id="playPauseBtn" class="m-btn">▶</button>
-              <button id="nextBtn" class="m-btn-small">⏭</button>
+              <button id="miniPlayBtn" class="m-btn">▶</button>
             </div>
           </div>
-          <div class="m-bottom">
-            <span id="currentTime" class="m-time">0:00</span>
-            <div class="m-progress" id="progressContainer"><div class="m-bar" id="musicProgress"></div></div>
-            <span id="totalTime" class="m-time">0:00</span>
-          </div>
-          <audio id="bgMusic" loop><source src="assets/music.mp3" type="audio/mpeg"></audio>
         </div>
 
         <!-- APP GRID -->
@@ -125,6 +121,9 @@
       <section class="app-screen" id="notes" data-app="notes"></section>
       <section class="app-screen" id="game" data-app="game"></section>
       <section class="app-screen" id="dashboard" data-app="dashboard"></section>
+      
+      <!-- MUSIC APP SCREEN -->
+      <section class="app-screen" id="music" data-app="music"></section>
 
       <!-- FACEBOOK APP -->
       <section class="app-screen" id="facebookApp" style="padding: 0;">
@@ -136,7 +135,7 @@
         <iframe src="https://m.facebook.com" class="fb-iframe" title="Facebook"></iframe>
       </section>
 
-      <!-- WEATHER MODAL (Dynamic - Pupunuin ng JS) -->
+      <!-- WEATHER MODAL -->
       <div class="weather-modal" id="weatherModal"></div>
 
       <!-- LIGHTBOX -->
@@ -166,9 +165,11 @@
         <button class="switcher-close" id="switcherClose">✕ Close</button>
       </div>
 
-      <!-- SETTINGS MODAL -->
-      <div class="settings-modal" id="settingsModal">
-        <div class="settings-content">
+      <!-- SETTINGS MODAL (Hiwalay ang HTML pero nasa loob pa rin ng screenWrap) -->
+     <!-- <div class="settings-modal" id="settingsModal"> -->
+        <!-- SETTINGS APP SCREEN -->
+	<section class="app-screen" id="settings" data-app="settings"></section>
+	<!-- <div class="settings-content">
           <h3>App Settings</h3>
           <div class="wallpaper-options">
             <button class="wp-btn" data-bg="gradient">Default</button>
@@ -181,7 +182,7 @@
           </button>
           <button class="close-settings" id="closeSettings">Done</button>
         </div>
-      </div>
+      </div> -->
 
     </div> <!-- End of screenWrap -->
 

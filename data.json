@@ -45,5 +45,17 @@
     "images/python1.png",
     "images/csharp1.png",
     "images/myprofile.jpg"
+  ],
+  "music": [
+    {
+      "title": "Empire State of Mind",
+      "artist": "Jay-Z ft. Alicia Keys",
+      "src": "assets/empire.mp3"
+    },
+    {
+      "title": "Hall of Fame",
+      "artist": "The Script",
+      "src": "assets/champion.mp3"
+    }
   ]
 }

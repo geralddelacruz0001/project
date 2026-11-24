@@ -1,25 +1,12 @@
 // ===== SETTINGS APP LOGIC =====
 (function() {
-  const openSettings = document.getElementById("openSettings");
-  const closeSettings = document.getElementById("closeSettings");
-  const settingsModal = document.getElementById("settingsModal");
+  const settingsScreen = document.getElementById("settings");
+  if (!settingsScreen) return;
+
   const screenWrapEl = document.getElementById("screenWrap");
-  const themeBtn = document.getElementById("themeToggle");
+  const themeBtn = document.getElementById("settingsThemeToggle");
+  const themeIcon = document.getElementById("themeIcon");
   const shareBtn = document.getElementById("shareBtn");
-
-  if (openSettings && settingsModal) {
-    openSettings.addEventListener("click", () => {
-      settingsModal.classList.add("show");
-      if (typeof playTone === 'function') { playTone(600, 0.05); }
-    });
-  }
-
-  if (closeSettings && settingsModal) {
-    closeSettings.addEventListener("click", () => {
-      settingsModal.classList.remove("show");
-      if (typeof playTone === 'function') { playTone(500, 0.05); }
-    });
-  }
 
   document.querySelectorAll(".wp-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -31,13 +18,15 @@
         screenWrapEl.style.background = bg;
       }
       if (typeof playTone === 'function') { playTone(800, 0.05); }
+      if (typeof buzz === 'function') { buzz(10); }
     });
   });
 
-  if(themeBtn) {
+  if (themeBtn) {
     themeBtn.addEventListener("click", () => {
       document.body.classList.toggle("light");
-      themeBtn.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+      const isLight = document.body.classList.contains("light");
+      if (themeIcon) themeIcon.textContent = isLight ? "☀️" : "🌙";
       if (typeof playTone === 'function') { playTone(700, 0.05); }
       if (navigator.vibrate) navigator.vibrate(30);
     });
